@@ -85,9 +85,9 @@ export function LeapfrogCCfDModule({
                 <thead>
                   <tr className="text-left text-xs text-mist-400">
                     <th className="px-2 py-1.5 font-medium">更深層技術組合</th>
-                    <th className="px-2 py-1.5 text-right font-medium">MAC</th>
-                    <th className="px-2 py-1.5 text-right font-medium">Δ減碳量</th>
-                    <th className="px-2 py-1.5 text-right font-medium">年度補貼</th>
+                    <th className="whitespace-nowrap px-2 py-1.5 text-right font-medium">MAC</th>
+                    <th className="whitespace-nowrap px-2 py-1.5 text-right font-medium">Δ減碳量</th>
+                    <th className="whitespace-nowrap px-2 py-1.5 text-right font-medium">年度補貼</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,13 +96,13 @@ export function LeapfrogCCfDModule({
                       <td className="px-2 py-1.5 font-medium text-mist-600">
                         [{c.leverIds.join(' + ')}]
                       </td>
-                      <td className="px-2 py-1.5 text-right font-mono text-mist-500">
+                      <td className="whitespace-nowrap px-2 py-1.5 text-right font-mono text-mist-500">
                         €{c.mac.toFixed(0)}/tCO₂
                       </td>
-                      <td className="px-2 py-1.5 text-right font-mono text-mist-500">
+                      <td className="whitespace-nowrap px-2 py-1.5 text-right font-mono text-mist-500">
                         {fmtNumber(c.abatementDelta)} tCO₂
                       </td>
-                      <td className="px-2 py-1.5 text-right font-mono font-semibold text-indigo-600">
+                      <td className="whitespace-nowrap px-2 py-1.5 text-right font-mono font-semibold text-indigo-600">
                         €{fmtCurrency(c.subsidy)}/年
                       </td>
                     </tr>

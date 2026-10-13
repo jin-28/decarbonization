@@ -1,21 +1,15 @@
 import { BookOpen, Leaf } from 'lucide-react';
 import { plantTemplates } from '@/lib/decarbonizationEngine';
 
-export type ViewMode = 'simple' | 'expert';
-
 interface AppHeaderProps {
   selectedTemplate: number;
   onTemplateChange: (idx: number) => void;
-  mode: ViewMode;
-  onModeChange: (m: ViewMode) => void;
   onGuideOpen: () => void;
 }
 
 export function AppHeader({
   selectedTemplate,
   onTemplateChange,
-  mode,
-  onModeChange,
   onGuideOpen,
 }: AppHeaderProps) {
   return (
@@ -44,41 +38,14 @@ export function AppHeader({
           </div>
         </div>
 
-        {/* Right: mode toggle + guide button */}
-        <div className="flex items-center gap-3">
-          {/* Mode toggle */}
-          <div className="flex items-center rounded-lg border border-mist-200 bg-mist-50 p-0.5">
-            <button
-              onClick={() => onModeChange('simple')}
-              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
-                mode === 'simple'
-                  ? 'bg-white text-brand-700 shadow-sm'
-                  : 'text-mist-500 hover:text-mist-700'
-              }`}
-            >
-              極簡模式
-            </button>
-            <button
-              onClick={() => onModeChange('expert')}
-              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
-                mode === 'expert'
-                  ? 'bg-white text-brand-700 shadow-sm'
-                  : 'text-mist-500 hover:text-mist-700'
-              }`}
-            >
-              專家模式
-            </button>
-          </div>
-
-          {/* Guide button */}
-          <button
-            onClick={onGuideOpen}
-            className="flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
-          >
-            <BookOpen className="h-4 w-4" />
-            <span className="hidden sm:inline">使用說明</span>
-          </button>
-        </div>
+        {/* Right: guide button */}
+        <button
+          onClick={onGuideOpen}
+          className="flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
+        >
+          <BookOpen className="h-4 w-4" />
+          <span className="hidden sm:inline">使用說明</span>
+        </button>
       </div>
     </header>
   );

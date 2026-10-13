@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { AlertCircle } from 'lucide-react';
 import type {
   MacroEconomicContext,
@@ -9,7 +9,7 @@ import {
   plantTemplates,
   runFullCalculation,
 } from '@/lib/decarbonizationEngine';
-import { AppHeader, type ViewMode } from '@/components/AppHeader';
+import { AppHeader } from '@/components/AppHeader';
 import { ExecutiveHero } from '@/components/ExecutiveHero';
 import { AnalyticsTabs } from '@/components/AnalyticsTabs';
 import { AdvancedSettings } from '@/components/AdvancedSettings';
@@ -20,15 +20,9 @@ function App() {
   const [templateIdx, setTemplateIdx] = useState(0);
   const [plant, setPlant] = useState<PlantBaselineInput>(plantTemplates[0].plant);
   const [macro, setMacro] = useState<MacroEconomicContext>(defaultMacroContext);
-  const [mode, setMode] = useState<ViewMode>('simple');
   const [guideOpen, setGuideOpen] = useState(false);
   const [highlight, setHighlight] = useState<HighlightElement>(null);
   const [advancedExpanded, setAdvancedExpanded] = useState(false);
-
-  // Auto-expand advanced settings in expert mode, auto-collapse in simple mode
-  useEffect(() => {
-    setAdvancedExpanded(mode === 'expert');
-  }, [mode]);
 
   const template = plantTemplates[templateIdx];
 
@@ -54,8 +48,6 @@ function App() {
       <AppHeader
         selectedTemplate={templateIdx}
         onTemplateChange={handleTemplateChange}
-        mode={mode}
-        onModeChange={setMode}
         onGuideOpen={() => setGuideOpen(true)}
       />
 
