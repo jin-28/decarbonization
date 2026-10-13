@@ -1,6 +1,6 @@
 import type { ExtendedExecutiveKPIs, FrontierStep } from '@/lib/decarbonizationEngine';
 import { fmtCurrency, fmtNumber } from '@/lib/format';
-import { AlertTriangle, Layers, XCircle } from 'lucide-react';
+import { TriangleAlert as AlertTriangle, Layers, Circle as XCircle } from 'lucide-react';
 
 interface LeapfrogCCfDModuleProps {
   kpis: ExtendedExecutiveKPIs;
@@ -29,7 +29,7 @@ export function LeapfrogCCfDModule({
               警訊：碳價已達 €{carbonPrice.toFixed(0)}/tCO₂ 臨界值！
             </p>
             <p className="mt-1 text-sm text-rust-600">
-              建議避開過渡期 LEILAC 技術，直接越級投資「鈣循環 (Calcium Looping)」以獲取長期最大經濟效益。
+              建議避開過渡期技術，直接越級投資「鈣循環 (Calcium Looping)」以獲取長期最大經濟效益。
             </p>
           </div>
         </div>
@@ -52,6 +52,8 @@ export function LeapfrogCCfDModule({
         </div>
       )}
 
+      {/* Two-column: CCfD left, Technology Elimination right */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       {/* CCfD Subsidy Module */}
       <div className="rounded-xl border border-mist-200 bg-white p-4 shadow-sm">
         <div className="mb-3 flex items-center gap-2">
@@ -112,8 +114,9 @@ export function LeapfrogCCfDModule({
         )}
       </div>
 
-      {/* Technology Elimination Analysis */}
+      {/* Technology Elimination Analysis (right column) */}
       <TechnologyElimination frontierSteps={frontierSteps} carbonPrice={carbonPrice} />
+      </div>
     </div>
   );
 }
@@ -164,7 +167,22 @@ function TechnologyElimination({
   }
 
   if (eliminatedLevers.length === 0) {
-    return null;
+    return (
+      <div className="rounded-xl border border-mist-200 bg-white p-4 shadow-sm">
+        <div className="mb-3 flex items-center gap-2">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+            <XCircle className="h-5 w-5" />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-mist-700">技術淘汰分析 (Technology Elimination)</h3>
+            <p className="text-xs text-mist-400">被成本有效前緣淘汰之技術</p>
+          </div>
+        </div>
+        <p className="text-sm text-mist-400">
+          目前所有技術均在合理成本範圍內，未被演算法淘汰。
+        </p>
+      </div>
+    );
   }
 
   return (
